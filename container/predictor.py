@@ -10,10 +10,11 @@ import pickle
 import signal
 import sys
 import traceback
-import boto3
 
+import boto3
 import flask
 import pandas as pd
+
 from sklearn.impute import SimpleImputer
 
 prefix = "/opt/ml/"
@@ -70,13 +71,18 @@ def transformation():
     if flask.request.content_type == "text/csv":
         input = flask.request.data.decode("utf-8")
         s = io.StringIO(input)
-        data = pd.read_csv(s, header=None)
 
+        print("HTTP Request: ", s)
+        data = pd.read_csv(s)
+
+        print('Input Data: ', data)
         print("Invoked with {} records".format(data.shape[0]))
 
         # Some transformation, result is available in current data set
         X_predict = data
         del X_predict['diabetes']
+        
+        print('Processed Data: ', X_predict)
         
         # Avoiding zeros
         fill_0 = SimpleImputer(missing_values=0, strategy="mean") #, axis=0)
