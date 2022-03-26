@@ -4,7 +4,7 @@
 
 FROM ubuntu:18.04
 
-MAINTAINER Anurag Singh <anuragsingh.inn@gmail.com>
+MAINTAINER Anurag Singh <anuragsingh.in@gmail.com>
 
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
