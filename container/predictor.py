@@ -32,9 +32,6 @@ class ScoringService(object):
 
     @classmethod
     def get_model(cls):
-
-        print(os.environ['Name']);
-        print(os.environ['Company']);
         
         """Get the model object for this instance, loading it if it's not already loaded."""
         if cls.model == None:
@@ -73,12 +70,13 @@ def transformation():
     # Convert from CSV to pandas
     if flask.request.content_type == "text/csv":
         input = flask.request.data.decode("utf-8")
+        
         s = io.StringIO(input)
-
         print("HTTP Request: ", s)
-        data = pd.read_csv(s)
 
+        data = pd.read_csv(s)
         print('Input Data: ', data)
+
         print("Invoked with {} records".format(data.shape[0]))
 
         # Some transformation, result is available in current data set
@@ -94,6 +92,10 @@ def transformation():
         )
 
     print("Predict with {} records".format(X_predict.shape[0]))
+
+    name =os.environ['Name']
+    company = os.environ['Company']
+    print(f'{name} is working for {company}')
 
     # Do the prediction
     predictions = ScoringService.predict(X_predict)
