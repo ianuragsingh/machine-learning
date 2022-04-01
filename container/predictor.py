@@ -32,6 +32,10 @@ class ScoringService(object):
 
     @classmethod
     def get_model(cls):
+
+        print(os.environ['Name']);
+        print(os.environ['Company']);
+        
         """Get the model object for this instance, loading it if it's not already loaded."""
         if cls.model == None:
            with open(os.path.join(model_path, "dpredict-diabetes-model.pkl"), "rb") as inp:
