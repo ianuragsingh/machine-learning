@@ -34,9 +34,8 @@ class ScoringService(object):
     def get_model(cls):
         """Get the model object for this instance, loading it if it's not already loaded."""
         if cls.model == None:
-            s3client = boto3.client('s3')
-            response = s3client.get_object(Bucket=s3_bucket_name, Key=model_file)
-            cls.model = pickle.loads(response['Body'].read())
+           with open(os.path.join(model_path, "dpredict-diabetes-model.pkl"), "rb") as inp:
+                cls.model = pickle.load(inp)
         return cls.model
 
     @classmethod
