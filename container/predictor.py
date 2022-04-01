@@ -38,7 +38,7 @@ class ScoringService(object):
         
         """Get the model object for this instance, loading it if it's not already loaded."""
         if cls.model == None:
-           with open(os.path.join(model_path, "dpredict-diabetes-model.pkl"), "rb") as inp:
+           with open(os.path.join(model_path, "predict-diabetes-model.pkl"), "rb") as inp:
                 cls.model = pickle.load(inp)
         return cls.model
 
