@@ -80,9 +80,6 @@ def transformation():
 
         # Some transformation, result is available in current data set
         X_predict = data
-        del X_predict['diabetes']
-        
-        print('Processed Data: ', X_predict)
         
         # Avoiding zeros
         fill_0 = SimpleImputer(missing_values=0, strategy="mean") #, axis=0)
